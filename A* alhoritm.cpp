@@ -137,67 +137,34 @@ void aStarSearch(int grid[][COL], Pair src, Pair dest)
     cellDetails[i][j].parent_i = i;
     cellDetails[i][j].parent_j = j;
 
-    /*
-    Create an open list having information as-
-    <f, <i, j>>
-    where f = g + h,
-    and i, j are the row and column index of that cell
-    Note that 0 <= i <= ROW-1 & 0 <= j <= COL-1
-    This open list is implemented as a set of pair of
-    pair.*/
+   
     set<pPair> openList;
 
-    // Put the starting cell on the open list and set its
-    // 'f' as 0
+  
     openList.insert(make_pair(0.0, make_pair(i, j)));
 
-    // We set this boolean value as false as initially
-    // the destination is not reached.
+   
     bool foundDest = false;
 
     while (!openList.empty()) {
         pPair p = *openList.begin();
 
-        // Remove this vertex from the open list
+     
         openList.erase(openList.begin());
 
-        // Add this vertex to the closed list
+        
         i = p.second.first;
         j = p.second.second;
         closedList[i][j] = true;
 
-        /*
-        Generating all the 8 successor of this cell
-
-            N.W N N.E
-            \ | /
-                \ | /
-            W----Cell----E
-                / | \
-                / | \
-            S.W S S.E
-
-        Cell-->Popped Cell (i, j)
-        N --> North     (i-1, j)
-        S --> South     (i+1, j)
-        E --> East     (i, j+1)
-        W --> West         (i, j-1)
-        N.E--> North-East (i-1, j+1)
-        N.W--> North-West (i-1, j-1)
-        S.E--> South-East (i+1, j+1)
-        S.W--> South-West (i+1, j-1)*/
-
-        // To store the 'g', 'h' and 'f' of the 8 successors
+       
         double gNew, hNew, fNew;
 
-        //----------- 1st Successor (North) ------------
-
-        // Only process this cell if this is a valid one
+        
         if (isValid(i - 1, j) == true) {
-            // If the destination cell is the same as the
-            // current successor
+           
             if (isDestination(i - 1, j, dest) == true) {
-                // Set the Parent of the destination cell
+              
                 cellDetails[i - 1][j].parent_i = i;
                 cellDetails[i - 1][j].parent_j = j;
                 printf("The destination cell is found\n");
@@ -219,7 +186,7 @@ void aStarSearch(int grid[][COL], Pair src, Pair dest)
                     openList.insert(make_pair(
                         fNew, make_pair(i - 1, j)));
 
-                    // Update the details of this cell
+                   
                     cellDetails[i - 1][j].f = fNew;
                     cellDetails[i - 1][j].g = gNew;
                     cellDetails[i - 1][j].h = hNew;
