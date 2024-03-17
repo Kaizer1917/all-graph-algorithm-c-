@@ -129,7 +129,6 @@ void aStarSearch(int grid[][COL], Pair src, Pair dest)
         }
     }
 
-    // Initialising the parameters of the starting node
     i = src.first, j = src.second;
     cellDetails[i][j].f = 0.0;
     cellDetails[i][j].g = 0.0;
