@@ -8,12 +8,12 @@ int main(int argc, const char * argv[])
     int dl[] = {-1, 0, 1, 0}; 
     int dc[] = {0, 1, 0, -1};
 
-    queue<int> X, Y; 
+    std::queue<int> X, Y; 
 
     X.push(start_x); 
     Y.push(start_y);
 
-    void lee()
+    void lee();
     {
       int x, y, xx, yy;
       while(!X.empty()) 
